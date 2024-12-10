@@ -1,4 +1,3 @@
-import time
 from random import randint
 
 import aiohttp
@@ -36,7 +35,7 @@ async def get_legal_cases_list(headers, guid):
 async def find_candidate(birthdate, candidates):
 
     for guid in candidates:
-        time.sleep(randint(5, 10))
+        await asyncio.sleep(randint(5, 10))
         user_agent = fake_useragent.UserAgent().random
         url = "https://fedresurs.ru/backend/persons/" + guid
 
@@ -95,7 +94,7 @@ async def main():
     pages_count = (total // limit) + 1
 
     for i in range(pages_count):
-        time.sleep(randint(5, 10))
+        await asyncio.sleep(randint(5, 10))
         querystring["offset"] += 15
         data = await load_page_data(url, headers, querystring)
 
